@@ -30,6 +30,10 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="wns-va-icE"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Uab-Mu-gFp"/>
+                                </connections>
                             </tableView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="njr-Ws-rtL">
                                 <rect key="frame" x="20" y="88" width="374" height="254"/>
@@ -52,7 +56,7 @@
             </objects>
             <point key="canvasLocation" x="844.92753623188412" y="138.61607142857142"/>
         </scene>
-        <!--Title-->
+        <!--Detail View Controller-->
         <scene sceneID="Tb9-Zz-M4D">
             <objects>
                 <viewController id="ldt-mg-fdD" customClass="DetailViewController" customModule="appFacelift" customModuleProvider="target" sceneMemberID="viewController">
@@ -210,7 +214,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="2vI-7u-Gmq"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="vt8-DU-iAl">
+                    <navigationItem key="navigationItem" id="vt8-DU-iAl">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="F9Q-4U-IkC">
                             <color key="tintColor" red="0.18844789270000001" green="0.36577671769999998" blue="0.58095926050000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </barButtonItem>
