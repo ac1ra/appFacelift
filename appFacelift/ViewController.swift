@@ -10,16 +10,25 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var arrays: [String] = ["add", "application"]
+    var arrays: [Price] = [
+        Price(arraysName: "Плитка настенная Керкира", wallm2: 15.4, quantityBox: 11, quantityTile: 77, priceTotal: 9563, weightTotal: 13),
+        Price(arraysName: "Плитка настенная Керкира", wallm2: 15.4, quantityBox: 11, quantityTile: 77, priceTotal: 9563, weightTotal: 13),
+        Price(arraysName: "Плитка настенная Керкира", wallm2: 15.4, quantityBox: 11, quantityTile: 77, priceTotal: 9563, weightTotal: 13)
+    ]
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrays.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
         
-        cell.textLabel?.text = arrays[indexPath.row]
+        cell.nameLabel.text = arrays[indexPath.row].arraysName
+        cell.wallsLabel.text = String(arrays[indexPath.row].wallm2)
+        cell.quantityBox.text = String(arrays[indexPath.row].quantityBox)
+        cell.quantityTiles.text = String(arrays[indexPath.row].quantityTile)
+        cell.totalPrice.text = String(arrays[indexPath.row].priceTotal)
+        cell.totalWeight.text = String(arrays[indexPath.row].weightTotal)
         
         return cell
     }
@@ -28,8 +37,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+
     }
 
-
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            arrays.remove(at: indexPath.row)
+        }
+        tableView.reloadData()
+        
+        print("Total item \(arrays.count)")
+        for name in arrays {
+            print(name)
+        }
+    }
 }
 
