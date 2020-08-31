@@ -10,11 +10,17 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var tableView = UITableView()
+    
     var arrays: [Price] = [
         Price(arraysName: "Плитка настенная Керкира", wallm2: 15.4, quantityBox: 11, quantityTile: 77, priceTotal: 9563, weightTotal: 13),
         Price(arraysName: "Плитка настенная Керкира", wallm2: 15.4, quantityBox: 11, quantityTile: 77, priceTotal: 9563, weightTotal: 13),
         Price(arraysName: "Плитка настенная Керкира", wallm2: 15.4, quantityBox: 11, quantityTile: 77, priceTotal: 9563, weightTotal: 13)
     ]
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrays.count
@@ -39,16 +45,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Do any additional setup after loading the view.
 
     }
-
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            arrays.remove(at: indexPath.row)
-        }
-        tableView.reloadData()
-        
-        print("Total item \(arrays.count)")
-        for name in arrays {
-            print(name)
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete", handler: {(action,sourceView,completionHandler)in
+            self.arrays.remove(at: indexPath.row)
+            
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            completionHandler(true)
+        })
+        let swipeActionsConfiguration = UISwipeActionsConfiguration(actions: [deleteAction])
+        return swipeActionsConfiguration
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetail" {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let destinationController = segue.description as! DetailViewController
+                destinationController.items = arrays[indexPath.row]
+                
+            }
         }
     }
 }
