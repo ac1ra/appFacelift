@@ -27,7 +27,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
+        let detailCell = "datacell"
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: detailCell, for: indexPath) as! TableViewCell
         
         cell.nameLabel.text = arrays[indexPath.row].arraysName
         cell.wallsLabel.text = String(arrays[indexPath.row].wallm2)
@@ -58,9 +60,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
-                let destinationController = segue.description as! DetailViewController
+                let destinationController = segue.destination as! DetailViewController
                 destinationController.items = arrays[indexPath.row]
-                
             }
         }
     }

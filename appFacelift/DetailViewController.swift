@@ -12,6 +12,20 @@ class DetailViewController: UIViewController, UITableViewDelegate,UITableViewDat
     
     var items = Price()
     
+    @IBOutlet var tableView: UITableView!
+    @IBOutlet var headerView: DetailHeaderView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        headerView.HeaderLabel.text = items.arraysName
+        print("test items:\(items.arraysName)")
+
+            // Do any additional setup after loading the view.
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -36,21 +50,8 @@ class DetailViewController: UIViewController, UITableViewDelegate,UITableViewDat
             fatalError("Failed to instantiate the table view cell for detail view controller")
         }
     }
-    
-    
-    @IBOutlet var tableView: UITableView!
-    @IBOutlet var headerView: DetailHeaderView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
 
-        headerView.HeaderLabel.text = items.arraysName
-        // Do any additional setup after loading the view.
-        tableView.delegate = self
-        tableView.dataSource = self
-    }
     
-
     /*
     // MARK: - Navigation
 

@@ -24,6 +24,6 @@ class Price {
         self.weightTotal = weightTotal
     }
     convenience init(){
-    self.init(arraysName:"",wallm2:0,quantityBox:0,quantityTile:0,priceTotal:0,weightTotal:0)
+        self.init(arraysName: "", wallm2:  0, quantityBox:  0, quantityTile:  0, priceTotal:  0, weightTotal:  0)
     }
 }

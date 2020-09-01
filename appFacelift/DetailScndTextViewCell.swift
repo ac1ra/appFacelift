@@ -15,6 +15,7 @@ class DetailScndTextViewCell: UITableViewCell {
             labelDescriptionScndCell.numberOfLines = 0
         }
     }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
